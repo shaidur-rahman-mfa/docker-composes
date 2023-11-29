@@ -12,3 +12,11 @@ services:
       - "8990:8090"
     command: >
       sh -c "zap-webswing.sh"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 200M
+        reservations:
+          cpus: '0.10'
+          memory: 100M
