@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"  # SMTP port
+      - "8025:8025"  # Web UI port
+    networks:
+      - mailhog-net
+    command: "-smtp-bind-addr 0.0.0.0:1025 -ui-bind-addr 0.0.0.0:8025"
+
+  dovecot:
+    image: dovecot/dovecot
+    volumes:
+      - ./dovecot/config:/etc/dovecot
+    ports:
+      - "143:143" # IMAP port
+      - "110:110" # POP3 port
+    environment:
+      - USER1=john@example.com
+      - PASS1=password
+      - USER2=jane@example.com
+      - PASS2=securepassword
+
+networks:
+  mailhog-net:
+    driver: bridge
