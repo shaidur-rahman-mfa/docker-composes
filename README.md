@@ -20,3 +20,13 @@ sudo chmod +x /usr/local/bin/docker-compose
 docker --version
 docker-compose --version
 ```
+## Starting a container
+1. Go to the specified folder and run the below command to start the container:
+```
+docker-compose up
+```
+Example for starting the smtp service:
+```
+cd smtp/
+docker-compose up
+```
