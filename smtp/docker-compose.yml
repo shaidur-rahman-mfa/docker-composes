@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  postfix:
+    image: namshi/smtp
+    ports:
+      - "2525:25"
+    environment:
+      - ALLOWED_SENDER_DOMAINS=ncdev.local
+      - ALLOWED_RECIPIENT_DOMAINS=ncdev.local
+      - ALLOWED_NETWORKS=0.0.0.0/0
+    volumes:
+      - ./postfix/config:/etc/postfix
+    restart: always
